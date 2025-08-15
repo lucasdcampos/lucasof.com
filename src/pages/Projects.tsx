@@ -1,4 +1,7 @@
 import Layout from '../components/Layout';
+import ProjectCard from '../components/ProjectCard';
+import { FaReact, FaPython } from 'react-icons/fa';
+import { SiTypescript, SiDotnet, SiExpress, SiPostgresql } from 'react-icons/si';
 
 export default function Projects() {
   return (
@@ -7,25 +10,42 @@ export default function Projects() {
       <p className="mb-8 text-base text-gray-300">Here are some of my projects:</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
-          <h2 className="text-2xl font-semibold mb-2">lucasof.com</h2>
-          <p className="text-gray-400 mb-2">This website...</p>
-          <a href="/" className="text-indigo-400 underline">View Details</a>
-        </div>
-        <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
-          <h2 className="text-2xl font-semibold mb-2">Libra</h2>
-          <p className="text-gray-400 mb-2">Libra is a programming language with Portuguese syntax</p>
-          <a href="https://github.com/lucasdcampos/libra" className="text-indigo-400 underline">View Details</a>
-        </div>
-        <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
-          <h2 className="text-2xl font-semibold mb-2">Silex Chat</h2>
-          <p className="text-gray-400 mb-2">Chat App with End-to-End Encryption</p>
-          <a href="https://github.com/lucasdcampos/silexchat" className="text-indigo-400 underline">View Details</a>
-        </div>
-        <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
-          <h2 className="text-2xl font-semibold mb-2">L.E.N.A</h2>
-          <p className="text-gray-400 mb-2">My personal AI Agent. This one doesn't have a public repository yet.</p>
-        </div>
+        <ProjectCard
+          title="lucasof.com"
+          description="This webiste..."
+          stack={
+            <>
+              <SiTypescript className="text-blue-400 text-2xl" title="TypeScript" />
+              <FaReact className="text-cyan-400 text-2xl" title="React" />
+            </>
+          }
+          link="#"
+        />
+        <ProjectCard
+          title="Libra"
+          description="Libra is a programming language with Portuguese syntax."
+          stack={<SiDotnet className="text-purple-400 text-2xl" title="C#" />}
+          link="#"
+        />
+        <ProjectCard
+          title="Silex Chat"
+          description="A chat app with end to end encryption."
+          stack={
+            <>
+              <SiTypescript className="text-blue-400 text-2xl" title="TypeScript" />
+              <SiExpress className="text-gray-400 text-2xl" title="Express" />
+              <SiPostgresql className="text-blue-700 text-2xl" title="Postgres" />
+              <FaReact className="text-cyan-400 text-2xl" title="React" />
+            </>
+          }
+          link="#"
+        />
+        <ProjectCard
+          title="L.E.N.A"
+          description="My personal AI Assistant. This one doesn't have a public version yet."
+          stack={<FaPython className="text-yellow-400 text-2xl" title="Python" />}
+          link=""
+        />
       </div>
     </Layout>
   );
