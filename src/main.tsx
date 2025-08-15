@@ -3,7 +3,5 @@ import './index.css'
 import RouterRoot from './RouterRoot';
 
 createRoot(document.getElementById('root')!).render(
-
     <RouterRoot />
-
 )

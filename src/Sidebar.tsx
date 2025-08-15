@@ -2,10 +2,10 @@
 import { FaHome, FaFolderOpen, FaBlog, FaEnvelope } from 'react-icons/fa';
 
 const links = [
-  { name: 'Home', href: '#', icon: <FaHome className="inline mr-2" /> },
-  { name: 'Projects', href: '#', icon: <FaFolderOpen className="inline mr-2" /> },
-  { name: 'Blog', href: '#', icon: <FaBlog className="inline mr-2" /> },
-  { name: 'Contact', href: '#', icon: <FaEnvelope className="inline mr-2" /> },
+  { name: 'Home', href: '/', icon: <FaHome className="inline mr-2" /> },
+  { name: 'Projects', href: '/projects', icon: <FaFolderOpen className="inline mr-2" /> },
+  { name: 'Blog', href: '/blog', icon: <FaBlog className="inline mr-2" /> },
+  { name: 'Contact', href: '/contact', icon: <FaEnvelope className="inline mr-2" /> },
 ];
 
 export default function Sidebar() {
