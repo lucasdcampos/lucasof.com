@@ -13,9 +13,9 @@ export default function Sidebar() {
     <aside className="w-60 bg-black border-r-1 border-gray-800 min-h-screen flex flex-col items-center py-8 justify-center gap-10">
       <div>
         <img
-          src="/vite.svg"
+          src="/lucas.png"
           alt="Logo"
-          className="w-24 h-24 rounded-full border-4 border-white object-cover"
+          className="w-24 h-24 rounded-full border-1 border-white object-cover"
         />
       </div>
 
