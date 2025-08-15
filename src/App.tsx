@@ -1,13 +1,11 @@
-import { useState } from 'react'
+import Sidebar from './Sidebar';
+import MainContent from './MainContent';
 
-function App() {
+export default function App() {
   return (
-    <>
-      <div className="text-3xl font-bold underline">
-        Hello world!
-      </div>
-    </>
-  )
+    <div className="flex min-h-screen bg-black text-white">
+      <Sidebar />
+      <MainContent />
+    </div>
+  );
 }
-
-export default App
