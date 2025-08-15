@@ -10,12 +10,15 @@ const links = [
 
 export default function Sidebar() {
   return (
-    <aside className="w-60 bg-black border-r-1 border-gray-800 min-h-screen flex flex-col items-center py-8 justify-center gap-10">
+    <aside
+      className="bg-black border-r border-gray-800 min-h-screen flex flex-col items-center py-8 justify-center gap-10 fixed left-0 top-0 h-screen z-20"
+      style={{ width: 'var(--sidebar-width, 240px)' }} // fallback: 240px
+    >
       <div>
         <img
           src="/lucas.png"
           alt="Logo"
-          className="w-24 h-24 rounded-full border-1 border-white object-cover"
+          className="w-24 h-24 rounded-full border border-white object-cover"
         />
       </div>
 
@@ -35,7 +38,7 @@ export default function Sidebar() {
         </ul>
       </nav>
 
-      <footer className="text-white text-sm">
+      <footer className="text-white text-sm mt-auto">
         &copy; {new Date().getFullYear()} Lucasof
       </footer>
     </aside>

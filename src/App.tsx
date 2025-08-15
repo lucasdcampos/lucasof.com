@@ -1,11 +1,9 @@
-import Sidebar from './Sidebar';
-import MainContent from './MainContent';
+import Home from './Home';
 
 export default function App() {
   return (
     <div className="flex min-h-screen bg-black text-white">
-      <Sidebar />
-      <MainContent />
+      <Home />
     </div>
   );
 }
