@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './App';
-import Projects from './Projects';
-import Blog from './Blog';
-import Contact from './Contact';
-import NotFound from './NotFound';
+import App from '../App';
+import Projects from '../pages/Projects';
+import Blog from '../pages/Blog';
+import Contact from '../pages/Contact';
+import NotFound from '../pages/NotFound';
 
 export default function RouterRoot() {
   return (
