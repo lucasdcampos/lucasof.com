@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from '../App';
 import Projects from '../pages/Projects';
 import Blog from '../pages/Blog';
+import Post from '../pages/Post';
 import Contact from '../pages/Contact';
 import NotFound from '../pages/NotFound';
 
@@ -12,6 +13,7 @@ export default function RouterRoot() {
         <Route path="/" element={<App />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<Post />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
