@@ -15,7 +15,7 @@ export default function Post() {
 
   if (!entry) return <Navigate to="/404" />;
 
-  const [path, raw] = entry;
+  const [, raw] = entry;
   const { attributes, body } = fm(raw as string);
   const data = attributes as { title: string; date?: string };
 
