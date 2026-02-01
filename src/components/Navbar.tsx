@@ -16,9 +16,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [isOpen]);
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setIsOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <nav className="fixed top-0 w-full z-50 transition-all duration-300 border-b border-gray-200/10 dark:border-white/5 
@@ -30,7 +33,7 @@ export default function Navbar() {
             <li key={link.name}>
               <Link 
                 to={link.href} 
-                className="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
+                className="text-gray-500 dark:text-gray-400 hover:text-[var(--accent-color)] dark:hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
               >
                 {link.icon}
                 {link.name}
@@ -47,12 +50,12 @@ export default function Navbar() {
           {theme === 'dark' ? <FaSun size={18} className="text-yellow-400" /> : <FaMoon size={18} className="text-gray-600" />}
         </button>
 
-        <div className="md:hidden absolute right-4 flex items-center gap-2">
+        <div className="md:hidden absolute right-4 flex items-center gap-1">
           <button
             onClick={toggleTheme}
             className="p-2 text-[var(--text-color)]"
           >
-            {theme === 'dark' ? <FaSun size={20} className="text-yellow-400" /> : <FaMoon size={20} />}
+            {theme === 'dark' ? <FaSun size={18} className="text-yellow-400" /> : <FaMoon size={18} />}
           </button>
           
           <button 
@@ -62,26 +65,29 @@ export default function Navbar() {
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
-      </div>
 
-      {isOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-[var(--bg-color)] z-40 px-6 py-8 animate-in fade-in slide-in-from-top-4 duration-300">
-          <ul className="flex flex-col gap-8 items-center mt-12">
-            {links.map((link) => (
-              <li key={link.name}>
-                <Link 
-                  to={link.href} 
-                  className="text-3xl font-bold text-[var(--text-color)] flex items-center gap-4"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <span className="text-blue-500">{link.icon}</span>
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+        {isOpen && (
+          <div className="absolute top-[calc(100%+8px)] right-4 w-48 py-2 
+                          bg-[var(--panel-bg-color)] border border-gray-200/50 dark:border-white/10 
+                          rounded-xl shadow-xl shadow-black/10 
+                          animate-in fade-in zoom-in-95 duration-200">
+            <ul className="flex flex-col">
+              {links.map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    to={link.href} 
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-[var(--text-color)] hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span className="text-[var(--accent-color)]">{link.icon}</span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </nav>
   );
 }
