@@ -1,30 +1,50 @@
 import Sidebar, { SIDEBAR_WIDTH } from './Sidebar';
+import Navbar from './Navbar';
 import { useEffect, useState } from 'react';
+import PageTransition from './PageTransition';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+interface LayoutProps {
+  children: React.ReactNode;
+  layoutType?: 'sidebar' | 'navbar';
+}
+
+export default function Layout({ children, layoutType = 'navbar' }: LayoutProps) {
+  const isSidebar = layoutType === 'sidebar';
   const minWidth = 768;
-  const [marginLeft, setMarginLeft] = useState(() => (typeof window !== 'undefined' && window.innerWidth >= minWidth ? SIDEBAR_WIDTH : 0));
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    function handleResize() {
-      setMarginLeft(window.innerWidth >= minWidth ? SIDEBAR_WIDTH : 0);
-    }
-    window.addEventListener('resize', handleResize);
+    const handleResize = () => setIsDesktop(window.innerWidth >= minWidth);
     handleResize();
+    window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const mainPadding = isSidebar && isDesktop ? { marginLeft: SIDEBAR_WIDTH } : {};
+
   return (
-    <div className="bg-black text-white min-h-screen">
-      <Sidebar />
+    <div className="min-h-screen flex flex-col">
+      {isSidebar ? <Sidebar /> : <Navbar />}
+
       <main
-        className="px-8 py-12 flex flex-col gap-4 items-center min-h-screen"
-        style={{ marginLeft }}
+        className={`px-8 flex flex-col gap-4 items-center flex-1 ${!isSidebar ? 'pt-24' : 'py-12'}`}
+        style={mainPadding}
       >
         <div className="w-full max-w-3xl">
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </div>
       </main>
+
+      <footer 
+        className="py-8 w-full text-center text-gray-500 text-sm"
+        style={mainPadding}
+      >
+        <div className="max-w-3xl mx-auto pt-8">
+          © {new Date().getFullYear()} lucasof. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 }

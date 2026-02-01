@@ -1,37 +1,73 @@
-// src/pages/Blog.tsx
 import Layout from '../components/Layout';
 import fm from 'front-matter';
+import { Link } from 'react-router-dom';
 
-const posts = import.meta.glob('../posts/*.md', { eager: true, query: '?raw', import: 'default' });
+const postFiles = import.meta.glob('../posts/*.md', { eager: true, query: '?raw', import: 'default' });
+
+interface PostEntry {
+  title: string;
+  date: string;
+  slug: string;
+  year: number;
+}
 
 export default function Blog() {
+  const posts: PostEntry[] = Object.entries(postFiles).map(([path, content]) => {
+    const { attributes } = fm(content as string);
+    const data = attributes as { title: string; date: string | Date };
+    
+    const dateStr = data.date instanceof Date 
+      ? data.date.toISOString().split('T')[0] 
+      : String(data.date);
+
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const dateObj = new Date(y, m - 1, d);
+
+    return {
+      title: data.title,
+      date: dateStr,
+      slug: path.split('/').pop()?.replace('.md', '') || '',
+      year: dateObj.getFullYear(),
+    };
+  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const years = Array.from(new Set(posts.map(p => p.year)));
+
   return (
     <Layout>
-      <h1 className="text-4xl font-bold mb-8">Blog</h1>
-      <div className="flex flex-col gap-4">
-        {Object.entries(posts).map(([path, raw]) => {
-          const { attributes } = fm(raw as string);
-          const data = attributes as { title: string; date?: string };
-          // mm/dd/yyyy
-          let formattedDate = String(data.date);
-          if (formattedDate && !isNaN(Date.parse(formattedDate))) {
-            const d = new Date(formattedDate);
-            formattedDate = `${(d.getMonth()+1).toString().padStart(2,'0')}/${d.getDate().toString().padStart(2,'0')}/${d.getFullYear()}`;
-          }
-          // Generate slug from file path
-          const slug = path.split('/').pop()?.replace('.md', '');
-          return (
-            <div key={path} className="flex items-center gap-4">
-              <span className="text-gray-500 text-sm w-24">{formattedDate}</span>
-              <a
-                href={`/blog/${slug}`}
-                className="font-semibold text-lg hover:underline"
-              >
-                {data.title}
-              </a>
+      <header className="mb-12">
+        <h1 className="text-4xl font-bold text-white mb-4">Blog</h1>
+        <div className="h-1 w-12 bg-blue-500 rounded-full mb-4" />
+        <p className='text-gray-400'>Thoughts on software, technology and other stuff.</p>
+      </header>
+
+      <div className="space-y-12">
+        {years.map(year => (
+          <section key={year} className="relative">
+            <h2 className="text-xl font-bold text-gray-600 mb-6">{year}</h2>
+            <div className="flex flex-col gap-6">
+              {posts.filter(p => p.year === year).map(post => {
+                const [y, m, d] = post.date.split('-').map(Number);
+                const localDate = new Date(y, m - 1, d);
+
+                return (
+                  <Link 
+                    key={post.slug} 
+                    to={`/blog/${post.slug}`} 
+                    className="group flex flex-col md:flex-row md:items-baseline gap-4"
+                  >
+                    <time className="text-sm font-mono text-gray-500 w-24">
+                      {localDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
+                    </time>
+                    <span className="text-lg text-gray-300 group-hover:text-blue-400 transition-colors">
+                      {post.title}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
-          );
-        })}
+          </section>
+        ))}
       </div>
     </Layout>
   );
