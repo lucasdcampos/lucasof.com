@@ -38,10 +38,10 @@ export default function Layout({ children, layoutType = 'navbar' }: LayoutProps)
       </main>
 
       <footer 
-        className="py-8 w-full text-center text-gray-500 text-sm"
+        className="py-12 w-full text-center text-gray-500 text-sm"
         style={mainPadding}
       >
-        <div className="max-w-3xl mx-auto pt-8">
+        <div className="max-w-3xl mx-auto pt-8 border-t border-gray-200 dark:border-gray-800/20">
           © {new Date().getFullYear()} lucasof. All rights reserved.
         </div>
       </footer>

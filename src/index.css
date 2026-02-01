@@ -1,22 +1,32 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-
-  /* Base */
+  --bg-color: #FFF8E7;
+  --text-color: #2D2A26;
+  --panel-bg-color: #F5EEDA;
+  --accent-color: #3B82F6;
+  
   --sidebar-width: 320px;
-  --bg-color: rgb(25, 30, 35);
-  --text-color: rgb(255, 255, 255);
-  --font-size: 17px;
-  --font-family: 'Tahoma';
+  --font-family: 'Tahoma', sans-serif;
+}
 
-  --panel-bg-color: rgb(30, 35, 40);
+.dark {
+  --bg-color: #181e27;
+  --text-color: #E6EDF3;
+  --panel-bg-color: #1d232c;
+  --accent-color: #606afa;
+}
 
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-size: var(--font-size);
-  font-family: var(--font-family);
+@layer base {
+  html, body, #root {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s;
+  }
 }

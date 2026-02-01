@@ -1,6 +1,8 @@
-import { FaHome, FaFolderOpen, FaBlog, FaEnvelope } from 'react-icons/fa';
+import { FaHome, FaFolderOpen, FaBlog, FaEnvelope, FaSun, FaMoon } from 'react-icons/fa';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useTheme } from '../hooks/useTheme';
 
 const links = [
   { name: 'Home', href: '/', icon: <FaHome /> },
@@ -10,6 +12,7 @@ const links = [
 ];
 
 export default function Navbar() {
+  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -18,44 +21,62 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <nav className="fixed top-0 w-full z-50 transition-all duration-300">
+    <nav className="fixed top-0 w-full z-50 transition-all duration-300 border-b border-gray-200/10 dark:border-white/5 
+                    bg-[var(--bg-color)]/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-center relative">
         
-        {/* Desktop Links - Centralizados */}
         <ul className="hidden md:flex gap-8">
           {links.map((link) => (
             <li key={link.name}>
-              <a href={link.href} className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium">
+              <Link 
+                to={link.href} 
+                className="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
+              >
                 {link.icon}
                 {link.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
-        {/* Mobile Toggle - Posicionado à direita na ausência de logo */}
-        <button 
-          className="md:hidden text-white absolute right-4" 
-          onClick={() => setIsOpen(!isOpen)}
+        <button
+          onClick={toggleTheme}
+          className="hidden md:flex absolute right-8 p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-[var(--text-color)]"
+          aria-label="Toggle Theme"
         >
-          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          {theme === 'dark' ? <FaSun size={18} className="text-yellow-400" /> : <FaMoon size={18} className="text-gray-600" />}
         </button>
+
+        <div className="md:hidden absolute right-4 flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-[var(--text-color)]"
+          >
+            {theme === 'dark' ? <FaSun size={20} className="text-yellow-400" /> : <FaMoon size={20} />}
+          </button>
+          
+          <button 
+            className="p-2 text-[var(--text-color)]" 
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-black z-40 px-6 py-8">
-          <ul className="flex flex-col gap-6 items-center">
+        <div className="md:hidden fixed inset-0 top-16 bg-[var(--bg-color)] z-40 px-6 py-8 animate-in fade-in slide-in-from-top-4 duration-300">
+          <ul className="flex flex-col gap-8 items-center mt-12">
             {links.map((link) => (
               <li key={link.name}>
-                <a 
-                  href={link.href} 
-                  className="text-2xl text-white flex items-center gap-4"
+                <Link 
+                  to={link.href} 
+                  className="text-3xl font-bold text-[var(--text-color)] flex items-center gap-4"
                   onClick={() => setIsOpen(false)}
                 >
-                  {link.icon}
+                  <span className="text-blue-500">{link.icon}</span>
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

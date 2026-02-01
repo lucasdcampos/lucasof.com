@@ -36,15 +36,19 @@ export default function Blog() {
   return (
     <Layout>
       <header className="mb-12">
-        <h1 className="text-4xl font-bold text-white mb-4">Blog</h1>
-        <div className="h-1 w-12 bg-blue-500 rounded-full mb-4" />
-        <p className='text-gray-400'>Thoughts on software, technology and other stuff.</p>
+        <h1 className="text-4xl font-bold mb-4">Blog</h1>
+        <div className="h-1 w-12 bg-[var(--accent-color)] rounded-full mb-4" />
+        <p className='text-gray-600 dark:text-gray-400'>
+          Thoughts on software, technology and other stuff.
+        </p>
       </header>
 
       <div className="space-y-12">
         {years.map(year => (
           <section key={year} className="relative">
-            <h2 className="text-xl font-bold text-gray-600 mb-6">{year}</h2>
+            <h2 className="text-xl font-bold text-gray-400 dark:text-gray-600 mb-6 uppercase tracking-widest">
+              {year}
+            </h2>
             <div className="flex flex-col gap-6">
               {posts.filter(p => p.year === year).map(post => {
                 const [y, m, d] = post.date.split('-').map(Number);
@@ -56,10 +60,10 @@ export default function Blog() {
                     to={`/blog/${post.slug}`} 
                     className="group flex flex-col md:flex-row md:items-baseline gap-4"
                   >
-                    <time className="text-sm font-mono text-gray-500 w-24">
+                    <time className="text-sm font-mono text-gray-500 w-24 tabular-nums">
                       {localDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
                     </time>
-                    <span className="text-lg text-gray-300 group-hover:text-blue-400 transition-colors">
+                    <span className="text-lg font-medium text-[var(--text-color)] group-hover:text-[var(--accent-color)] transition-colors duration-300">
                       {post.title}
                     </span>
                   </Link>

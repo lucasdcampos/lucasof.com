@@ -7,9 +7,11 @@ export default function Projects() {
   return (
     <Layout>
       <header className="mb-12">
-        <h1 className="text-4xl font-bold text-white mb-4">Projects</h1>
-        <div className="h-1 w-12 bg-blue-500 rounded-full mb-4" />
-        <p className="text-lg text-gray-400 max-w-2xl">
+        <h1 className="text-4xl font-bold mb-4">Projects</h1>
+        
+        <div className="h-1 w-12 bg-[var(--accent-color)] rounded-full mb-4" />
+        
+        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
           A collection of tools, experiments, and full-stack applications I've built.
         </p>
       </header>
