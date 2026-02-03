@@ -14,7 +14,7 @@ import {
 
 const mainLinks = [
   { name: 'lucasof', href: 'https://discordapp.com/users/319652568160534542', icon: <FaDiscord />, color: 'text-[var(--accent-color)]' },
-  { name: 'lucasm.campos@hotmail.com.br', href: 'mailto:lucasm.campos@hotmail.com.br', icon: <FaEnvelope />, color: 'text-red-500' },
+  { name: 'hi@lucasof.com', href: 'mailto:hi@lucasof.com', icon: <FaEnvelope />, color: 'text-red-500' },
   { name: 'lucasdcampos', href: 'https://github.com/lucasdcampos', icon: <FaGithub />, color: 'text-gray-600 dark:text-gray-300' },
   { name: 'lucazof', href: 'https://linkedin.com/in/lucazof', icon: <FaLinkedin />, color: 'text-blue-500' },
 ];
