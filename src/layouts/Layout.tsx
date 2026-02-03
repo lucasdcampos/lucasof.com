@@ -1,7 +1,7 @@
-import Sidebar, { SIDEBAR_WIDTH } from './Sidebar';
-import Navbar from './Navbar';
+import Sidebar, { SIDEBAR_WIDTH } from '../components/Sidebar';
+import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react';
-import PageTransition from './PageTransition';
+import PageTransition from '../components/PageTransition';
 
 interface LayoutProps {
   children: React.ReactNode;

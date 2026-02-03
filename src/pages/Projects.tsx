@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import ProjectCard from '../components/ProjectCard';
 import { FaReact, FaPython } from 'react-icons/fa';
 import { SiTypescript, SiDotnet, SiExpress, SiPostgresql } from 'react-icons/si';

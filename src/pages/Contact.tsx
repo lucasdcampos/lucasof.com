@@ -1,4 +1,5 @@
-import Layout from '../components/Layout';
+import ContactCard from '../components/ContactCard';
+import Layout from '../layouts/Layout';
 import {
   FaDiscord,
   FaEnvelope,
@@ -7,7 +8,6 @@ import {
   FaTwitter,
   FaChessKnight,
   FaYoutube,
-  FaCopy,
   FaKey,
   FaCoffee
 } from 'react-icons/fa';
@@ -95,39 +95,26 @@ export default function Contact() {
       <section className="space-y-6 border-t border-gray-200 dark:border-gray-800 pt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
-          {/* GPG Card */}
-          <div className="bg-[var(--panel-bg-color)] border border-gray-200 dark:border-gray-800 p-6 rounded-xl transition-colors">
-            <div className="flex items-center gap-3 mb-4">
-              <FaKey className="text-yellow-600 dark:text-yellow-500/70" />
-              <h2 className="font-semibold">GPG Key</h2>
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              For encrypted communication: <a href="/lucasof.gpg" className="text-[var(--accent-color)] hover:underline">lucasof.gpg</a>
-            </p>
-            <div 
-              onClick={() => copyToClipboard('8608 3933 1F97 5E66 0E40 6469 24EE 745B 2F0A 90C4')}
-              className="bg-black/5 dark:bg-black/50 rounded-lg p-3 text-[10px] font-mono text-gray-500 break-all cursor-pointer hover:bg-black/10 dark:hover:text-gray-300 border border-gray-200 dark:border-white/5 transition-colors flex justify-between items-center group"
-            >
-              <span>8608 3933 1F97 5E66 0E40 6469 24EE 745B 2F0A 90C4</span>
-              <FaCopy className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-          </div>
+          <ContactCard 
+            title="GPG Key"
+            icon={<FaKey className="text-yellow-600 dark:text-yellow-500/70" />}
+            description={
+              <>
+                For encrypted communication: 
+                <a href="/lucasof.gpg" className="ml-1 text-[var(--accent-color)] hover:underline">lucasof.gpg</a>
+              </>
+            }
+            copyValue="8608 3933 1F97 5E66 0E40 6469 24EE 745B 2F0A 90C4"
+            onCopy={copyToClipboard}
+          />
 
-          {/* Coffee Card */}
-          <div className="bg-[var(--panel-bg-color)] border border-gray-200 dark:border-gray-800 p-6 rounded-xl transition-colors">
-            <div className="flex items-center gap-3 mb-4">
-              <FaCoffee className="text-orange-600 dark:text-orange-400/70" />
-              <h2 className="font-semibold">Buy me a coffee</h2>
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Support my random projects via BTC:</p>
-            <div 
-              onClick={() => copyToClipboard('bc1qrfzjxcf49cnhpcawtqdggds5t39s4ms5xhjfkh')}
-              className="bg-black/5 dark:bg-black/50 rounded-lg p-3 text-[11px] font-mono text-gray-500 break-all cursor-pointer hover:bg-black/10 dark:hover:text-gray-300 border border-gray-200 dark:border-white/5 transition-colors flex justify-between items-center group"
-            >
-              <span>bc1qrfzjxcf49cnhpcawtqdggds5t39s4ms5xhjfkh</span>
-              <FaCopy className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-          </div>
+          <ContactCard 
+            title="Buy me a coffee"
+            icon={<FaCoffee className="text-orange-600 dark:text-orange-400/70" />}
+            description="Support my random projects via BTC:"
+            copyValue="bc1qrfzjxcf49cnhpcawtqdggds5t39s4ms5xhjfkh"
+            onCopy={copyToClipboard}
+          />
 
         </div>
       </section>

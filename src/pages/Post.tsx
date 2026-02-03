@@ -1,11 +1,11 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import fm from 'front-matter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { FaArrowLeft } from 'react-icons/fa';
 
-const posts = import.meta.glob('../posts/*.md', { eager: true, query: '?raw', import: 'default' });
+const posts = import.meta.glob('../assets/posts/*.md', { eager: true, query: '?raw', import: 'default' });
 
 export default function Post() {
   const { slug } = useParams();
