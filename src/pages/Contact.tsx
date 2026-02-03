@@ -101,7 +101,7 @@ export default function Contact() {
             description={
               <>
                 For encrypted communication: 
-                <a href="/lucasof.gpg" className="ml-1 text-[var(--accent-color)] hover:underline">lucasof.gpg</a>
+                <a href="/lucasof-pub.asc" className="ml-1 text-[var(--accent-color)] hover:underline">lucasof-pub.asc</a>
               </>
             }
             copyValue="B7FC 5DD0 380C 5020 2D27  6F80 D32C D939 878E 94E1"
