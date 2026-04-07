@@ -24,7 +24,7 @@ export default function Home() {
         <div className="relative flex-shrink-0">
           <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden border-2 border-[var(--accent-color)]/20 shadow-2xl shadow-[var(--accent-color)]/10">
             <img 
-              src="/lucas2.png" 
+              src="/lucas3.png" 
               alt="Lucas Maciel de Campos" 
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
             />
