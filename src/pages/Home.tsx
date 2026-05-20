@@ -6,7 +6,7 @@ export default function Home() {
       <section className="flex flex-col-reverse md:flex-row items-center justify-center gap-12 mt-12 w-full mx-auto">
         <div className="max-w-md text-center md:text-left flex flex-col items-center md:items-start">
           <h1 className="text-4xl md:text-5xl font-bold mb-2">
-            Lucas Maciel de Campos
+            Lucas Maciel de Campos.
           </h1>
           
           <h2 className="text-xl font-medium mb-6 text-[var(--accent-color)]">
