@@ -13,6 +13,6 @@ export default defineConfig(({ mode }) => {
       tailwindcss()
     ],
     server: { port },
-    preview: { port },
+    preview: { port, allowedHosts: 'all' },
   }
 })
